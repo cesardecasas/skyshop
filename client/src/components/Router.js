@@ -1,9 +1,10 @@
-import React,{useState, useEffect} from 'react'
+import React,{ useEffect} from 'react'
 import {Switch,Route} from 'react-router-dom'
 import Home from '../pages/Home'
 import {__CheckSession} from '../services/UserServices'
 import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
+import Layout from './Layout'
 
 
 const mapStateToProps =({user})=>{
@@ -61,9 +62,11 @@ const Router =(props)=>{
 
     return(
         <div>
-            <Switch>
-                <Route exact path='/' component={Home} />
-            </Switch>
+            <Layout>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                </Switch>
+            </Layout>
         </div>
     )
 }
