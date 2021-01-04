@@ -5,6 +5,7 @@ import {__CheckSession} from '../services/UserServices'
 import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
 import Layout from './Layout'
+import SignUp from '../pages/SignUp'
 
 
 const mapStateToProps =({user})=>{
@@ -58,13 +59,14 @@ const Router =(props)=>{
       useEffect(()=>{
         verifyTokenValid()
         console.log(props.history)
-        },[props.user.authenticated])
+        },[])
 
     return(
         <div>
             <Layout>
                 <Switch>
                     <Route exact path='/' component={Home} />
+                    <Route exact path='/signup' component={SignUp}/>
                 </Switch>
             </Layout>
         </div>

@@ -1,0 +1,65 @@
+.flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signup, .signin {
+    display: grid;
+    width: 100%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    position: static;
+    padding: 0;
+    grid-template-rows: auto auto;
+  }
+  
+  .signup form, .signin form {
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 3em;
+    height: 90%;
+    width: 120%;
+    padding: 2.2em;
+  }
+  
+  .signup form input, .signin form input {
+    margin: 1em auto;
+    width: 100%;
+  }
+  
+  button {
+    background-color: #28aa99;
+    padding: .4em 2em;
+    border-radius: 1.5em;
+    color: #eee;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Verdana;
+  }
+
+  input:focus::placeholder,
+  textarea:active::placeholder,
+  textarea:focus::placeholder {
+    color: rgba(0, 0, 0, 0.1);
+  }
+  
+  form input,
+  form textarea {
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 0.8em 0.5em;
+    transition: all 0.2s;
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .box{
+    background-color: rgb(255, 255, 255);
+  }
+
+  h3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
