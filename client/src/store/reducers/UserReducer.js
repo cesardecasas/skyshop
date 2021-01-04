@@ -1,11 +1,12 @@
-import { CURRENT_USER, AUTHENTICATED,NAME,EMAIL,PASSWORD} from '../types'
+import { CURRENT_USER, AUTHENTICATED,NAME,EMAIL,PASSWORD, ERROR} from '../types'
 
 const iState ={
     currentUser:null,
     authenticated:false,
     name:'',
     email:'',
-    password:''
+    password:'',
+    error:false
 }
 
 const UserReducer = (state=iState,action)=>{
@@ -20,6 +21,8 @@ const UserReducer = (state=iState,action)=>{
             return{...state, email:action.payload}
         case PASSWORD:
             return{...state, password:action.payload}
+        case ERROR:
+            return {...state, error: action.payload}
         default:
             return{...state}
         

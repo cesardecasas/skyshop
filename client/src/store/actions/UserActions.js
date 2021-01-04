@@ -1,5 +1,5 @@
 import {} from '../../services/UserServices'
-import {CURRENT_USER,AUTHENTICATED,EMAIL,NAME,PASSWORD} from '../types'
+import {CURRENT_USER,AUTHENTICATED,EMAIL,NAME,PASSWORD, ERROR} from '../types'
 
 
 export const auth =(value)=>({
@@ -25,4 +25,9 @@ export const name=(str)=>({
 export const password=(str)=>({
     type:PASSWORD,
     payload:str
+})
+
+export const error=(value)=>({
+    type: ERROR,
+    payload: value
 })

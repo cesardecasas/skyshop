@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
 import Layout from './Layout'
 import SignUp from '../pages/SignUp'
+import LogIn from '../pages/LogIn'
 
 
 const mapStateToProps =({user})=>{
@@ -50,11 +51,7 @@ const Router =(props)=>{
         }
       }
     
-     const toggleAuthenticated = (value, user, done) => {
-       props.setAuthenticated(value)
-       props.currentUser(user)
-       
-      }
+     
 
       useEffect(()=>{
         verifyTokenValid()
@@ -67,6 +64,7 @@ const Router =(props)=>{
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/signup' component={SignUp}/>
+                    <Route path='/login' component={LogIn}/>
                 </Switch>
             </Layout>
         </div>

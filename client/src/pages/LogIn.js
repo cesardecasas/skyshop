@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import TextInput from '../components/TextInput'
-import {name,email,password} from '../store/actions/UserActions'
+import {email,password, error,user,auth} from '../store/actions/UserActions'
 import '../css/Sign.css'
-import {__createUser} from '../services/UserServices'
+import {__LoginUser} from '../services/UserServices'
+import {XCircle} from 'react-feather'
 
 const mapStateToProps =({user})=>{
     return{
@@ -13,18 +14,19 @@ const mapStateToProps =({user})=>{
 
 const mapDispatchToProps =(dispatch)=>{
     return{
-        setName:(value)=>dispatch(name(value)),
         setEmail:(value)=>dispatch(email(value)),
-        setPassword:(value)=>dispatch(password(value))
+        setPassword:(value)=>dispatch(password(value)),
+        setFormError:(value)=>dispatch(error(value)),
+        setAuthenticated:(value)=>dispatch(auth(value)),
+        setCurrentUser:(value)=>dispatch(user(value))
     }
 
 }
-const SignUp=(props)=>{
-    const{name,email,password}=props.user
+const LogIn=(props)=>{
+    const{email,password, error}=props.user
+    console.log(props)
 
-    const handleChangeN=(e)=>{
-        props.setName(e.target.value)
-    }
+    
 
     const handleChangeE=(e)=>{
         props.setEmail(e.target.value)
@@ -37,18 +39,17 @@ const SignUp=(props)=>{
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const formData = {
-                name,
-                email,
-                password
-            }
-          await __createUser(formData)
-          props.setName('')
-          props.setPassword('')
-          props.setEmail('')
-          props.history.push('/login')
+            const userInf={email, password}
+            
+            const loginData = await __LoginUser(userInf)          
+            props.setAuthenticated(true)
+            props.setCurrentUser(loginData.user)
+            props.history.push('/')
+          
+          
+          return
         } catch (error) {
-          console.log(error)
+          props.setFormError(true)
         }
       } 
 
@@ -56,16 +57,8 @@ const SignUp=(props)=>{
         <div className='signup'>
             <br/>
             <form className='form flex-col box' onSubmit={handleSubmit}>
-            <h2>Sign Up</h2>
-                <p>Name</p>
-                <TextInput
-                    placeholder="What's Your Name"
-                    type='name'
-                    name='name'
-                    value={name}
-                    onChange={handleChangeN}
-                />
-
+            <h2>Log In</h2>
+            {error ? <p className='alert alert-danger'><XCircle/>Invalid credentials</p>:<p></p>}
                 <p>Email</p>
                 <TextInput
                     placeholder='Your Email'
@@ -84,11 +77,11 @@ const SignUp=(props)=>{
                     onChange={handleChangeP}
                 />
                
-                <button className='button'>SignUp</button>
+                <button className='button'>Log In</button>
             </form>
         </div>
     
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
