@@ -52,7 +52,7 @@ const Router =(props)=>{
 
       useEffect(()=>{
         verifyTokenValid()
-        },[props.user])
+        },[props.user.authenticated])
 
     return(
         <div>

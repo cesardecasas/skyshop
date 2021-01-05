@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id'
       })
 
-      User.hasMany(models.Inverntory,{
+      User.hasMany(models.Product,{
         foreignKey: 'user_id'
       })
 

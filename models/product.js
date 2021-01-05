@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Product.belongsTo(models.Cart,{
-        foreignKey:'product_id'
+        foreignKey:'id'
       })
 
-      Product.belongsTo(models.Inventory,{
-        foreignKey:'product_id'
+      Product.belongsTo(models.User,{
+        foreignKey:'user_id'
       })
 
-      Product.hasMany(models.Labels,{
+      Product.hasMany(models.Label,{
         foreignKey:'label_id'
       })
     }
@@ -27,9 +27,10 @@ module.exports = (sequelize, DataTypes) => {
   Product.init({
     name: DataTypes.STRING,
     description: DataTypes.STRING,
+    image: DataTypes.STRING,
     stock: DataTypes.INTEGER,
     label_id: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER
+    rating: DataTypes.INTEGER 
   }, {
     sequelize,
     modelName: 'Product',

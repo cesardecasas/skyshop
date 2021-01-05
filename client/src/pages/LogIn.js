@@ -24,8 +24,7 @@ const mapDispatchToProps =(dispatch)=>{
 }
 const LogIn=(props)=>{
     const{email,password, error}=props.user
-    console.log(props)
-
+    
     
 
     const handleChangeE=(e)=>{

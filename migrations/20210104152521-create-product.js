@@ -20,8 +20,16 @@ module.exports = {
       label_id: {
         type: Sequelize.INTEGER
       },
-      rating: {
+      user_id:{
         type: Sequelize.INTEGER
+      },
+      rating: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      image:{
+        type: Sequelize.STRING,
+        defaultValue:'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg'
       },
       createdAt: {
         allowNull: false,
