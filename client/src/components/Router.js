@@ -25,9 +25,6 @@ const mapDispatchToProps =(dispatch)=>{
 const Router =(props)=>{
 
 
-    let a=()=> props.history.push('/home')
-    let b=()=> props.history.push('/')
-
     const verifyTokenValid = async () => {
         const token = localStorage.getItem('token')
         
@@ -39,14 +36,14 @@ const Router =(props)=>{
             props.setCurrentUser(session.user)
             localStorage.setItem('user',JSON.stringify(session.user));
             console.log(session.user);
-            a()
+            
             
           } catch (error) {
             console.log(error);
             props.setCurrentUser(null)
             props.setAuthenticated(false)
             localStorage.clear()
-            b()
+            
           }
         }
       }
@@ -55,8 +52,7 @@ const Router =(props)=>{
 
       useEffect(()=>{
         verifyTokenValid()
-        console.log(props.history)
-        },[])
+        },[props.user])
 
     return(
         <div>
