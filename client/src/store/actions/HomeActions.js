@@ -1,5 +1,5 @@
-import {GET_RANDOM} from '../types'
-import {__getRandom,__addProduct,__getByLabel,__getById,__removeProduct} from '../../services/ProductServices'
+import {GET_RANDOM, SEARCH, SEARCH_VALUE} from '../types'
+import {__getRandom, __searchProduct} from '../../services/ProductServices'
 
 
 export const getRandom =()=>async(dispatch)=>{
@@ -14,3 +14,23 @@ export const getRandom =()=>async(dispatch)=>{
         return error 
     }
 } 
+
+export const getSearched=(value)=>async(dispatch)=>{
+    try {
+        const products = await __searchProduct(value)
+        dispatch({
+            type:SEARCH,
+            payload:products
+        })
+    } catch (error) {
+        return error 
+    }
+}
+
+export const search=(name,value)=>({
+    type:SEARCH_VALUE,
+    payload: {
+        name,
+        value
+      }
+})

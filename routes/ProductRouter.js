@@ -6,5 +6,6 @@ Router.get('/random', controller.randomProducts)
 Router.get('/specific/:id', controller.productById)
 Router.get('/label/:label_id', controller.productsByLabel)
 Router.delete('/:product_id', controller.deleteProduct)
+Router.get('/search', controller.searchProducts)
 
 module.exports = Router

@@ -44,3 +44,14 @@ export const __removeProduct=async(id)=>{
         return error 
     }
 }
+
+export const __searchProduct=async(search)=>{
+    try {
+        console.log('service',search)
+        const res = await ApiClient.get(`/product/search?product=${search}`)
+        console.log(res.data)
+        return res.data
+    } catch (error) {
+        console.log(error) 
+    }
+}

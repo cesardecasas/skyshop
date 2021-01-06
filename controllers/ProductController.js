@@ -58,10 +58,34 @@ const randomProducts =async(req,res)=>{
     }
 }
 
+const searchProducts=async(req,res)=>{
+    try {
+        console.log('hello',req.query)
+        const searched = req.query.product
+        const Op = Sequelize.Op
+        const products = await Product.findAll({
+            where:{
+                [Op.or]:[
+                    {name:{
+                        [Op.like]: `%${searched}%`
+                    }},
+                    {description:{
+                        [Op.like]: `%${searched}%`
+                    }}
+                ]
+            }
+        })
+        res.send(products)
+    } catch (error) {
+        return error
+    }
+}
+
 module.exports ={
     addProduct,
     productById,
     productsByLabel,
     deleteProduct,
-    randomProducts
+    randomProducts,
+    searchProducts
 }

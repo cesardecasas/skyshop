@@ -8,6 +8,7 @@ import Layout from './Layout'
 import SignUp from '../pages/SignUp'
 import LogIn from '../pages/LogIn'
 import CheckOut from '../pages/CheckOut'
+import Search from '../pages/Search'
 
 
 const mapStateToProps =({user})=>{
@@ -63,6 +64,7 @@ const Router =(props)=>{
                     <Route exact path='/signup' component={SignUp}/>
                     <Route path='/login' component={LogIn}/>
                     <Route path='/checkout' component={CheckOut}/>
+                    <Route path='/search' component={Search}/>
                 </Switch>
             </Layout>
         </div>

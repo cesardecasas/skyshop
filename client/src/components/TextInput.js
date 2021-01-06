@@ -8,6 +8,7 @@ export default (props) =>
       value={props.value}
       onChange={(e) => props.onChange(e)}
       placeholder={props.placeholder}
+      className={props.className}
     />
   ) : (
     <input
@@ -17,5 +18,6 @@ export default (props) =>
       onChange={(e) => props.onChange(e)}
       placeholder={props.placeholder}
       autoComplete="false"
+      className={props.className}
     />
   )

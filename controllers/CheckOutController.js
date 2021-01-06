@@ -17,7 +17,7 @@ const checkOutSession = async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: 'https://example.com/success',
+      success_url: 'http://localhost:3000/checkout',
       cancel_url: 'https://example.com/cancel',
     });
   

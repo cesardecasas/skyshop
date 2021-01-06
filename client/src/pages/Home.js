@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import {getRandom} from '../store/actions/HomeActions'
 import '../css/Home.css'
+import {__checkOut} from '../services/CheckOutService'
+
 
 const mapStateToProps =({homeState,user})=>{
     return{
@@ -24,6 +26,10 @@ const Home =(props)=>{
         
     }
 
+    const handleClick = async (event) => {
+        __checkOut()
+      };
+
     useEffect(()=>{
         populate()
     },[])
@@ -38,7 +44,7 @@ const Home =(props)=>{
                     <div className="card-body">
                         <h5 className="card-title">{item.name}</h5>
                         <p className="card-text">{item.description}</p>
-                        <a href="#" className="btn btn-primary">Checkout</a>
+                        <button className="btn btn-primary" role="link" onClick={handleClick}>Checkout</button>
                     </div>
                 </div>
                 ))
