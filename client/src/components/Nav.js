@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
-import {Search} from 'react-feather'
+import {Search, LogOut} from 'react-feather'
 import '../css/Nav.css'
 
 const mapStateToProps =({user})=>{
@@ -30,7 +30,7 @@ const Nav = (props)=>{
 
             <nav className='navbar navbar-light'>
 
-                <NavLink className="btn btn-outline-primary" to='/home' >
+                <NavLink className="btn btn-outline-primary" to='/' >
                     Home
                 </NavLink >
                 <form className="d-flex">
@@ -42,7 +42,7 @@ const Nav = (props)=>{
                     props.setAuthenticated(false)
                 }} 
                     exact to='/'>
-                        Sign Out
+                        <LogOut/>
                 </NavLink>
               
             </nav>

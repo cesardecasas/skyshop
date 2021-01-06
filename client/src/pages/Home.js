@@ -21,7 +21,7 @@ const Home =(props)=>{
 
     const populate=()=>{
         props.fetchProducts()
-        console.log(props.homeState)
+        
     }
 
     useEffect(()=>{
@@ -30,7 +30,7 @@ const Home =(props)=>{
 
     return(
         <div>
-            {props.user.currentUser ? <h2>Welcome back, {props.user.currentUser.name}</h2>:<p>For a better expereince sing in</p>}
+            {props.user.currentUser ? <h2>Welcome back, {props.user.currentUser.name}</h2>:<p>For a better experience, sing in</p>}
             <div className='products'>
                 {props.homeState.items ? props.homeState.items.map((item, index)=>(
                 <div className="card" style={{width: '18rem'}} key={index}>
@@ -38,7 +38,7 @@ const Home =(props)=>{
                     <div className="card-body">
                         <h5 className="card-title">{item.name}</h5>
                         <p className="card-text">{item.description}</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <a href="#" className="btn btn-primary">Checkout</a>
                     </div>
                 </div>
                 ))

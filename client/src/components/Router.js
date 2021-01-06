@@ -7,6 +7,7 @@ import {auth, user} from '../store/actions/UserActions'
 import Layout from './Layout'
 import SignUp from '../pages/SignUp'
 import LogIn from '../pages/LogIn'
+import CheckOut from '../pages/CheckOut'
 
 
 const mapStateToProps =({user})=>{
@@ -61,6 +62,7 @@ const Router =(props)=>{
                     <Route exact path='/' component={Home} />
                     <Route exact path='/signup' component={SignUp}/>
                     <Route path='/login' component={LogIn}/>
+                    <Route path='/checkout' component={CheckOut}/>
                 </Switch>
             </Layout>
         </div>

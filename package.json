@@ -30,7 +30,8 @@
     "node": "^15.4.0",
     "nodemon": "^2.0.6",
     "pg": "^8.5.1",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "stripe": "^8.129.0"
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
