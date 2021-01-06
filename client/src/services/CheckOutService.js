@@ -9,15 +9,28 @@ export const __checkOut=async()=>{
         const stripe = await stripePromise;
     
         // Call your backend to create the Checkout Session
-        const res = await ApiClient.post('/checkout/session')
+        
+        let line_items = []
+        let example = {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'T-shirt',
+            },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        }
+
+        const res = await ApiClient.post('/checkout/session',{line_items})
         console.log(res)
-        const session = await res.json()
+        const session = res.data
     
         // When the customer clicks on the button, redirect them to Checkout.
         const result = await stripe.redirectToCheckout({
-          sessionId: session.id,
+          sessionId: session.id
         });
-        console.log(result)
+        
     
         if (result.error) {
           // If `redirectToCheckout` fails due to a browser or network
