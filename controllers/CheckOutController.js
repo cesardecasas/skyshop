@@ -3,9 +3,10 @@ const stripe = Stripe('sk_test_51I6QY0CGQq3POs28c9OyxoGfiIphNCzRoTsApov1cWrclSOs
 
 const checkOutSession = async (req, res) => {
     const {line_items} =req.body
+    
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: line_items,
+      line_items:line_items,
       mode: 'payment',
       success_url: 'http://localhost:3000/checkout',
       cancel_url: 'http://localhost:3000',

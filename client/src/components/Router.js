@@ -14,6 +14,7 @@ import UploadProduct from '../pages/UploadProduct'
 import Cart from '../pages/Cart'
 
 
+
 const mapStateToProps =({user})=>{
     return{
         user
@@ -28,7 +29,6 @@ const mapDispatchToProps =(dispatch)=>{
 }
 
 const Router =(props)=>{
-
 
     const verifyTokenValid = async () => {
         const token = localStorage.getItem('token')

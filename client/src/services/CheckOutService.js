@@ -2,25 +2,27 @@ import ApiClient from './ApiClient'
 import { loadStripe } from '@stripe/stripe-js';
 
 
-export const __checkOut=async()=>{
+export const __checkOut=async(items)=>{
     try {
       const stripePromise = loadStripe('pk_test_51I6QY0CGQq3POs28QxKpCpJROwKJpzzT29ELO3nWIfcyUVjwsi75byLziqawsSy8G6sxOymjDp3KbZfx87FafL2U00iNNRL1DT');
-
+      
         const stripe = await stripePromise;
     
         // Call your backend to create the Checkout Session
         
         let line_items = []
-        let example = {
+        
+        let products = items.map(item=>item.Products[0])
+        products.forEach(product=>line_items.push({
           price_data: {
             currency: 'usd',
             product_data: {
-              name: 'T-shirt',
+              name: product.name,
             },
-            unit_amount: 2000,
+            unit_amount: product.price,
           },
           quantity: 1,
-        }
+        }))
 
         const res = await ApiClient.post('/checkout/session',{line_items})
         console.log(res)

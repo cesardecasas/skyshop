@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import '../css/Search.css'
+import {__addItem} from '../services/CartServices'
 
 
 
@@ -20,7 +21,13 @@ const Search =(props)=>{
     
     const {searchItems} = props.homeState
     
-
+    const handleClick = async (itemId) => {
+        if(props.user.currentUser){
+            __addItem(props.user.currentUser.id,itemId)
+        }else{
+            props.history.push('/login')
+        }
+      };
     
 
     useEffect(()=>{
@@ -42,7 +49,7 @@ const Search =(props)=>{
                                 <h5 className="card-title">{item.name}</h5>
                                 <p className="card-text">{item.description}</p>
                                 <p className="card-text">${item.price}</p>
-                                <button>Add to Cart</button>
+                                <button onClick={()=>handleClick(item.id)}>Add to Cart</button>
                                 </div>
                             </div>
                         </div>

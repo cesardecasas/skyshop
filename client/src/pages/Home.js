@@ -20,14 +20,18 @@ const mapDispatchToProps =(dispatch)=>{
 }
 
 const Home =(props)=>{
-    const {id} = props.user.currentUser
+    // const {id} = props.user.currentUser
     const populate=()=>{
         props.fetchProducts()
         
     }
 
     const handleClick = async (itemId) => {
-        __addItem(id,itemId)
+        if(props.user.currentUser){
+            __addItem(props.user.currentUser.id,itemId)
+        }else{
+            props.history.push('/login')
+        }
       };
 
     useEffect(()=>{

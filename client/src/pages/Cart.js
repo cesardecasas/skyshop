@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import '../css/Cart.css'
 import {getItems} from '../store/actions/CartActions'
+import {__checkOut} from '../services/CheckOutService'
 
 const mapStateToProps =({cart, user})=>{
     return{
@@ -21,18 +22,33 @@ const mapDispatchToProps =(dispatch)=>{
 const Cart = (props)=>{
     
     const {cartItems} = props.cart
+    const session = ()=>{
+        if(!props.user.currentUser){
+            props.history.push('/login')
+        }else{
+            props.populate(props.user.currentUser.id)
+        }
+    }
 
-    
+    let  total = 0
+
+    const handleCheckOut=async()=>{
+        console.log('h')
+        __checkOut(cartItems)
+    }
+
     useEffect(()=>{
-        props.populate(props.user.currentUser.id)
+        session()
     },[])
     return  (
         <div className='main'>
             
                 {cartItems ? cartItems.map((item,index)=>{
                     const {image,name,description,price} = item.Products[0]
-            return <div className='item'>
-            <div className="card mb-3" style={{width:'640px', height: '185px'}} key={index}>
+                    total +=price
+
+            return <div className='item' key={index}>
+            <div className="card mb-3" style={{width:'640px', height: '185px'}} >
                 <div className="row g-0">
                     <div className="col-md-4">
                         <img src={image} alt="..." style={{width:'200px', height: '180px'}}/>
@@ -49,9 +65,14 @@ const Cart = (props)=>{
             </div>
     </div> 
                 }) : <h3>You have no items in your cart</h3>}
+            {cartItems ?
             <div className='checkout'>
-
-            </div>
+                <h3>Your Total is</h3>
+                <h4>${total}</h4>
+                <button onClick={()=>handleCheckOut()}>Checkout</button>
+            </div>:
+            <h1></h1>
+            }
         </div>
     )
         
