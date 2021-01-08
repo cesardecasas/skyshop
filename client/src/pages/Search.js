@@ -30,18 +30,18 @@ const Search =(props)=>{
     return(
         <div className='main'>
             {searchItems ? searchItems.map((item,index)=>{
-                console.log(item.description.length)
+                
             return<div className='item'>
-                    <div class="card mb-3" style={{width:'640px', height: '185px'}} key={index}>
-                        <div class="row g-0">
-                            <div class="col-md-4">
+                    <div className="card mb-3" style={{width:'640px', height: '185px'}} key={index}>
+                        <div className="row g-0">
+                            <div className="col-md-4">
                                 <img src={item.image} alt="..." style={{width:'200px', height: '180px'}}/>
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                <h5 class="card-title">{item.name}</h5>
-                                <p class="card-text">{item.description}</p>
-                                <p class="card-text">${item.price}</p>
+                            <div className="col-md-8">
+                                <div className="card-body">
+                                <h5 className="card-title">{item.name}</h5>
+                                <p className="card-text">{item.description}</p>
+                                <p className="card-text">${item.price}</p>
                                 <button>Add to Cart</button>
                                 </div>
                             </div>

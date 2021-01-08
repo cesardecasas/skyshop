@@ -18,4 +18,4 @@ export const SEARCH_VALUE = 'SEARCH_VALUE'
 
 export const CHANGE = 'CHANGE'
 
-export const CHANGE_INT = 'CHANGE_INT'
+export const CART = 'CART'

@@ -1,11 +1,12 @@
 import React from 'react'
-import {NavLink, Link} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
 import {search, getSearched} from '../store/actions/HomeActions'
 import {Search, LogOut, ShoppingCart} from 'react-feather'
 import '../css/Nav.css'
 import TextInput from './TextInput'
+
 
 const mapStateToProps =({user, homeState})=>{
     return{
@@ -26,7 +27,7 @@ const mapDispatchToProps =(dispatch)=>{
 
 const Nav = (props)=>{
     const {search} = props.homeState
-    console.log('nav',props)
+    const history = useHistory()
 
     const handleChange=(e)=>{
         props.searchValue(e.target.name,e.target.value)
@@ -35,10 +36,11 @@ const Nav = (props)=>{
     const handleSubmit=(e)=>{
         e.preventDefault()
         props.getSearch(search)
+        history.push('/search')
     }
 
     const click=(e)=>{
-        props.history.push(e.target.value)
+       history.push(e.target.value)
     }
     
     return props.user.authenticated && props.user.currentUser  ? (

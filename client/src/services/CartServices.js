@@ -20,7 +20,7 @@ export const __removeItem=async(id)=>{
 
 export const __addItem=async(userId,productId)=>{
     try {
-        const res = await ApiClient.post(`/${userId}/${productId}`)
+        const res = await ApiClient.post(`/cart/${userId}/${productId}`)
         return res.data
     } catch (error) {
         console.log(error)

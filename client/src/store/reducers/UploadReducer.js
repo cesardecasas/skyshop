@@ -1,4 +1,4 @@
-import {CHANGE, CHANGE_INT} from '../types'
+import {CHANGE} from '../types'
 
 const iState ={
     name:'',
@@ -11,8 +11,6 @@ const iState ={
 const UploadReducer=(state=iState,action)=>{
     switch(action.type){
         case CHANGE:
-            return{...state, [action.payload.name]: action.payload.value}
-        case CHANGE_INT:
             return{...state, [action.payload.name]: action.payload.value}
         default:
             return{...state}

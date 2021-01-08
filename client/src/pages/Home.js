@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import {getRandom} from '../store/actions/HomeActions'
 import '../css/Home.css'
-import {__checkOut} from '../services/CheckOutService'
+import {__addItem} from '../services/CartServices'
+
 
 
 const mapStateToProps =({homeState,user})=>{
@@ -19,18 +20,16 @@ const mapDispatchToProps =(dispatch)=>{
 }
 
 const Home =(props)=>{
-    
-
+    const {id} = props.user.currentUser
     const populate=()=>{
         props.fetchProducts()
         
     }
 
-    const handleClick = async (event) => {
-        __checkOut()
+    const handleClick = async (itemId) => {
+        __addItem(id,itemId)
       };
 
-      console.log('home', props)
     useEffect(()=>{
         populate()
     },[])
@@ -48,7 +47,7 @@ const Home =(props)=>{
                         <h5 className="card-title">{item.name}</h5>
                         <h5 className="card-text">${item.price}</h5>
                         <p className="card-text">{item.description}</p>
-                        <button>Add to Cart</button>
+                        <button onClick={()=>handleClick(item.id)}>Add to Cart</button>
                     </div>
                 </div>)
                 })
