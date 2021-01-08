@@ -13,7 +13,6 @@ const HomeReducer=(state=iState,action)=>{
         case SEARCH:
             return{...state, searchItems:action.payload}
         case SEARCH_VALUE:
-            console.log(action.payload)
             return{...state, [action.payload.name]: action.payload.value}
         default:
             return{...state}

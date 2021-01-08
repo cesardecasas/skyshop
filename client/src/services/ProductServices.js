@@ -9,9 +9,9 @@ export const __getRandom =async()=>{
     }
 }
 
-export const __addProduct =async(userId)=>{
+export const __addProduct =async(userId,formData)=>{
     try {
-        const res = await ApiClient.post(`/product/${userId}`)
+        const res = await ApiClient.post(`/product/${userId}`,formData)
         return res.data
     } catch (error) {
         return error

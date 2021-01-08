@@ -15,3 +15,7 @@ export const GET_RANDOM ='GET_RANDOM'
 export const SEARCH = 'SEARCH'
 
 export const SEARCH_VALUE = 'SEARCH_VALUE'
+
+export const CHANGE = 'CHANGE'
+
+export const CHANGE_INT = 'CHANGE_INT'

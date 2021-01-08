@@ -9,6 +9,9 @@ import SignUp from '../pages/SignUp'
 import LogIn from '../pages/LogIn'
 import CheckOut from '../pages/CheckOut'
 import Search from '../pages/Search'
+import ProtectedRoute from './ProtectedRoute'
+import UploadProduct from '../pages/UploadProduct' 
+
 
 
 const mapStateToProps =({user})=>{
@@ -37,7 +40,7 @@ const Router =(props)=>{
             props.setAuthenticated(true)
             props.setCurrentUser(session.user)
             localStorage.setItem('user',JSON.stringify(session.user));
-            console.log(session.user);
+            
             
             
           } catch (error) {
@@ -65,6 +68,13 @@ const Router =(props)=>{
                     <Route path='/login' component={LogIn}/>
                     <Route path='/checkout' component={CheckOut}/>
                     <Route path='/search' component={Search}/>
+                    <Route path='/upload' component={UploadProduct}/>
+                    {/* <ProtectedRoute
+                    authenticated={props.user.authenticated}
+                    currentUser={props.user.currentUser}
+                    exact path='/upload'
+                    component={UploadProduct}
+                    /> */}
                 </Switch>
             </Layout>
         </div>

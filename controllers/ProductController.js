@@ -1,17 +1,19 @@
 const { Product} = require('../models')
 const Sequelize = require('sequelize')
+const upload =require('../middleware/awsUpload')
 
 
 const addProduct =async(req,res)=>{
     try {
         const user_id = req.params.user_id
+        const image = await upload(req.file)
         let product = {
             user_id,
+            image,
             ...req.body
         }
         const nproduct = await Product.create(product)
         res.send(nproduct)
-
     } catch (error) {
         console.log(error)
     }

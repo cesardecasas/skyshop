@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
 import {search, getSearched} from '../store/actions/HomeActions'
@@ -34,10 +34,13 @@ const Nav = (props)=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        console.log('h')
         props.getSearch(search)
     }
 
+    const click=(e)=>{
+        props.history.push(e.target.value)
+    }
+    
     return props.user.authenticated && props.user.currentUser  ? (
         <header >
 
@@ -57,8 +60,14 @@ const Nav = (props)=>{
                         onChange={handleChange}
                         className="form-control me-2"
                     />
-                    <button className="btn btn-outline-success" type="submit"><Search color='black' size={20}/></button>
+                    
+                        <button className="btn btn-outline-success" type="submit"><Search color='black' size={20}/></button>
+                        <Link to='/search'></Link>
                 </form>
+                <select name="products" id="products" onClick={click}>
+                    <option value="/upload" onClick={click}>My Products</option>
+                    <option value="saab">Upload Product</option>
+                </select>
                 <NavLink className="btn btn-outline-primary" onClick={() => {
                     localStorage.clear()
                     props.setAuthenticated(false)
