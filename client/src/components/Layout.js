@@ -1,7 +1,10 @@
 import React from 'react'
 import Nav from './Nav'
 
- const Layout = (props) => (
+ const Layout = (props) => {
+
+  
+  return (
   <div>
     <Nav
       className="header-elevated"
@@ -9,6 +12,6 @@ import Nav from './Nav'
     />
     {props.children}
   </div>
-)
+)}
 
 export default Layout

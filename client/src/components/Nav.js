@@ -3,7 +3,7 @@ import {NavLink, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {auth, user} from '../store/actions/UserActions'
 import {search, getSearched} from '../store/actions/HomeActions'
-import {Search, LogOut} from 'react-feather'
+import {Search, LogOut, ShoppingCart} from 'react-feather'
 import '../css/Nav.css'
 import TextInput from './TextInput'
 
@@ -26,7 +26,7 @@ const mapDispatchToProps =(dispatch)=>{
 
 const Nav = (props)=>{
     const {search} = props.homeState
-
+    console.log('nav',props)
 
     const handleChange=(e)=>{
         props.searchValue(e.target.name,e.target.value)
@@ -48,7 +48,7 @@ const Nav = (props)=>{
 
             <nav className='navbar navbar-light'>
 
-                <NavLink className="btn btn-outline-primary" to='/' >
+                <NavLink className="btn btn-outline-primary" exact to='/' >
                     Home
                 </NavLink >
                 <form className="d-flex" onSubmit={handleSubmit}>
@@ -60,14 +60,17 @@ const Nav = (props)=>{
                         onChange={handleChange}
                         className="form-control me-2"
                     />
-                    
+                        
                         <button className="btn btn-outline-success" type="submit"><Search color='black' size={20}/></button>
-                        <Link to='/search'></Link>
+                        
                 </form>
                 <select name="products" id="products" onClick={click}>
                     <option value="/upload" onClick={click}>My Products</option>
                     <option value="saab">Upload Product</option>
                 </select>
+                <NavLink className="btn btn-outline-primary" to='/cart' >
+                    <ShoppingCart/>
+                </NavLink >
                 <NavLink className="btn btn-outline-primary" onClick={() => {
                     localStorage.clear()
                     props.setAuthenticated(false)

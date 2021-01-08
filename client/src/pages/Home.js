@@ -30,6 +30,7 @@ const Home =(props)=>{
         __checkOut()
       };
 
+      console.log('home', props)
     useEffect(()=>{
         populate()
     },[])
@@ -42,12 +43,12 @@ const Home =(props)=>{
                     
                 return(    
                 <div className="card" style={{width: '18rem'}} key={index}>
-                    <img src={item.image} className="card-img-top" alt="..."/>
+                    <img src={item.image} className="card-img-top" style={{width: '18rem', height:'12rem'}} alt="..."/>
                     <div className="card-body">
                         <h5 className="card-title">{item.name}</h5>
                         <h5 className="card-text">${item.price}</h5>
                         <p className="card-text">{item.description}</p>
-                        <button className="btn btn-primary" role="link" onClick={handleClick}>Checkout</button>
+                        <button>Add to Cart</button>
                     </div>
                 </div>)
                 })
