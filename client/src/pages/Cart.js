@@ -46,7 +46,6 @@ const Cart = (props)=>{
         
         __checkOut(cartItems)
     }
-
     useEffect(()=>{
         session()
     },[])
