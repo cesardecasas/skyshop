@@ -1,0 +1,29 @@
+.body{
+    display: grid;
+    grid-template-columns: .75fr auto .75fr;
+}
+
+.detail{
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid black;
+    border-radius: 2.5rem;
+    padding: 20px;
+    align-self: center;
+    justify-content: center;
+
+}
+
+.show{
+    grid-column: 1;
+}
+
+.information{
+    grid-column: 2;
+}
+
+.product{
+    width: 500px;
+    height: 400px;
+}

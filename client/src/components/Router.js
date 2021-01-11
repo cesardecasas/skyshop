@@ -12,7 +12,7 @@ import Search from '../pages/Search'
 import ProtectedRoute from './ProtectedRoute'
 import UploadProduct from '../pages/UploadProduct' 
 import Cart from '../pages/Cart'
-
+import Product from '../pages/Product'
 
 
 const mapStateToProps =({user})=>{
@@ -71,12 +71,7 @@ const Router =(props)=>{
                     <Route path='/search' component={Search}/>
                     <Route path='/upload' component={UploadProduct}/>
                     <Route path='/cart' component={Cart}/>
-                    {/* <ProtectedRoute
-                    authenticated={props.user.authenticated}
-                    currentUser={props.user.currentUser}
-                    exact path='/upload'
-                    component={UploadProduct}
-                    /> */}
+                    <Route path='/detail' component={Product}/>
                 </Layout>
             </Switch>
         </div>

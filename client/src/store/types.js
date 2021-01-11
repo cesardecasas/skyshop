@@ -19,3 +19,5 @@ export const SEARCH_VALUE = 'SEARCH_VALUE'
 export const CHANGE = 'CHANGE'
 
 export const CART = 'CART'
+
+export const  ITEM = 'ITEM'

@@ -2,17 +2,20 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import '../css/Search.css'
 import {__addItem} from '../services/CartServices'
+import {getItem} from '../store/actions/HomeActions'
 
 
 
-const mapStateToProps =({homeState})=>{
+const mapStateToProps =({homeState,user})=>{
     return{
-        homeState
+        homeState,
+        user
     }
 }
 
 const mapDispatchToProps =(dispatch)=>{
     return{
+        selectItem:(value)=>dispatch(getItem(value))
         
     }
 }
@@ -28,6 +31,15 @@ const Search =(props)=>{
             props.history.push('/login')
         }
       };
+    
+      const productDetail = async(id)=>{
+        try {
+            await props.selectItem(id)
+            props.history.push('/detail')
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
 
     useEffect(()=>{
@@ -46,7 +58,7 @@ const Search =(props)=>{
                             </div>
                             <div className="col-md-8">
                                 <div className="card-body">
-                                <h5 className="card-title">{item.name}</h5>
+                                <h5 className="card-title productName" onClick={()=>productDetail(item.id)}>{item.name}</h5>
                                 <p className="card-text">{item.description}</p>
                                 <p className="card-text">${item.price}</p>
                                 <button onClick={()=>handleClick(item.id)}>Add to Cart</button>

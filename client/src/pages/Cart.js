@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import '../css/Cart.css'
 import {getItems} from '../store/actions/CartActions'
 import {__checkOut} from '../services/CheckOutService'
+import {__removeItem} from '../services/CartServices'
 
 const mapStateToProps =({cart, user})=>{
     return{
@@ -30,10 +31,19 @@ const Cart = (props)=>{
         }
     }
 
+    const remove =async(id)=>{
+        try {
+            await __removeItem(id)
+            await props.populate(props.user.currentUser.id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     let  total = 0
 
     const handleCheckOut=async()=>{
-        console.log('h')
+        
         __checkOut(cartItems)
     }
 
@@ -44,7 +54,7 @@ const Cart = (props)=>{
         <div className='main'>
             
                 {cartItems ? cartItems.map((item,index)=>{
-                    const {image,name,description,price} = item.Products[0]
+                    const {image,name,description,price,id} = item.Products[0]
                     total +=price
 
             return <div className='item' key={index}>
@@ -58,7 +68,7 @@ const Cart = (props)=>{
                         <h5 className="card-title">{name}</h5>
                         <p className="card-text">{description}</p>
                         <p className="card-text">${price}</p>
-                        <button>Remove Item</button>
+                        <button onClick={()=>remove(id)}>Remove Item</button>
                         </div>
                     </div>
                 </div>

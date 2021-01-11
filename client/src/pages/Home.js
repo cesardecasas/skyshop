@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
-import {getRandom} from '../store/actions/HomeActions'
+import {getRandom, getItem} from '../store/actions/HomeActions'
 import '../css/Home.css'
 import {__addItem} from '../services/CartServices'
 
@@ -15,12 +15,12 @@ const mapStateToProps =({homeState,user})=>{
 
 const mapDispatchToProps =(dispatch)=>{
     return{
-        fetchProducts:()=>dispatch(getRandom())
+        fetchProducts:()=>dispatch(getRandom()),
+        selectItem:(value)=>dispatch(getItem(value))
     }
 }
 
 const Home =(props)=>{
-    // const {id} = props.user.currentUser
     const populate=()=>{
         props.fetchProducts()
         
@@ -33,6 +33,15 @@ const Home =(props)=>{
             props.history.push('/login')
         }
       };
+    
+    const productDetail = async(id)=>{
+        try {
+            await props.selectItem(id)
+            props.history.push('/detail')
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(()=>{
         populate()
@@ -48,7 +57,7 @@ const Home =(props)=>{
                 <div className="card" style={{width: '18rem'}} key={index}>
                     <img src={item.image} className="card-img-top" style={{width: '18rem', height:'12rem'}} alt="..."/>
                     <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
+                        <h5 className="card-title productName" onClick={()=>productDetail(item.id)}>{item.name}</h5>
                         <h5 className="card-text">${item.price}</h5>
                         <p className="card-text">{item.description}</p>
                         <button onClick={()=>handleClick(item.id)}>Add to Cart</button>

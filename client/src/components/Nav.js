@@ -66,10 +66,9 @@ const Nav = (props)=>{
                         <button className="btn btn-outline-success" type="submit"><Search color='black' size={20}/></button>
                         
                 </form>
-                <select name="products" id="products" onClick={()=>click()}>
-                    <option value="/upload" onClick={()=>click()}>My Products</option>
-                    <option value="saab">Upload Product</option>
-                </select>
+                <NavLink className="btn btn-outline-primary" to='/upload'>
+                    Upload Product
+                </NavLink>
                 <NavLink className="btn btn-outline-primary" to='/cart' >
                     <ShoppingCart/>
                 </NavLink >

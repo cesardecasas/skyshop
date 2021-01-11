@@ -1,9 +1,10 @@
-import {GET_RANDOM, SEARCH, SEARCH_VALUE} from '../types'
+import {GET_RANDOM, SEARCH, SEARCH_VALUE, ITEM} from '../types'
 
 const iState ={
     items:[],
     searchItems:[],
-    search:''
+    search:'',
+    item:{}
 }
 
 const HomeReducer=(state=iState,action)=>{
@@ -14,6 +15,8 @@ const HomeReducer=(state=iState,action)=>{
             return{...state, searchItems:action.payload}
         case SEARCH_VALUE:
             return{...state, [action.payload.name]: action.payload.value}
+        case ITEM:
+            return{...state, item:action.payload}
         default:
             return{...state}
     }
