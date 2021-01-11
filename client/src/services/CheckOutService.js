@@ -12,7 +12,8 @@ export const __checkOut=async(items)=>{
         
         let line_items = []
         
-        let products = items.map(item=>item.Products[0])
+        if(items[0].Products){
+          let products = items.map(item=>item.Products[0])
         products.forEach(product=>line_items.push({
           price_data: {
             currency: 'usd',
@@ -23,6 +24,20 @@ export const __checkOut=async(items)=>{
           },
           quantity: 1,
         }))
+        }else{
+          let products = items
+        products.forEach(product=>line_items.push({
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: product.name,
+            },
+            unit_amount: product.price,
+          },
+          quantity: 1,
+        }))
+        }
+        
 
         const res = await ApiClient.post('/checkout/session',{line_items})
         console.log(res)

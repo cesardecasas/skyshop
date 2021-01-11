@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import {__addItem} from '../services/CartServices'
 import '../css/Product.css'
+import {__checkOut} from '../services/CheckOutService'
 
 
 const mapStateToProps =({homeState,user})=>{
@@ -26,7 +27,13 @@ const Product=(props)=>{
             props.history.push('/login')
         }
       };
-    
+      const handleCheckOut=async()=>{
+        if(props.user.currentUser){
+            __checkOut(props.homeState.item)
+        }else{
+            props.history.push('/login')
+        }
+    }
     
 
     useEffect(()=>{
@@ -54,6 +61,9 @@ const Product=(props)=>{
                             <h4>${item.price}</h4>
                             <br/>
                             <button onClick={()=>handleClick(item.id)}>Add to Cart</button>
+                            <br/>
+                            <h4></h4>
+                            <button className='buy' onClick={()=>handleCheckOut()}>Buy Now</button>
                         </div>
                     </div>
                 )
